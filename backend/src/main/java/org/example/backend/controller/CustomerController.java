@@ -2,6 +2,7 @@ package org.example.backend.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.example.backend.model.Customer;
+import org.example.backend.model.CustomerDTO;
 import org.example.backend.service.CustomerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -24,15 +25,12 @@ public class CustomerController {
         return service.getCustomerById(id);
     }
     @PostMapping
-    public Customer saveNewCustomer(@RequestBody Customer customer){
+    public Customer saveNewCustomer(@RequestBody CustomerDTO customer){
         return service.saveCustomer(customer);
     }
     @PutMapping("{id}")
-    public Customer updateCustomerById(@PathVariable String id, @RequestBody Customer customer){
-        if (!customer.getId().equals(id)) {
-            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "No customer found with this id!");
-        }
-        return service.saveCustomer(customer);
+    public Customer updateCustomerById(@PathVariable String id, @RequestBody CustomerDTO customer){
+       return service.updateCustomer(id, customer);
     }
     @DeleteMapping("{id}")
     public void deleteCustomerById(@PathVariable String id){service.deleteCustomerById(id);}

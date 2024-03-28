@@ -2,6 +2,7 @@ package org.example.backend.service;
 
 import lombok.RequiredArgsConstructor;
 import org.example.backend.model.Customer;
+import org.example.backend.model.CustomerDTO;
 import org.example.backend.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
@@ -14,14 +15,20 @@ public class CustomerService {
     public List<Customer> getAllCustomers() {
         return repo.findAll();
     }
-    public Customer saveCustomer(Customer customer) {
-        repo.save(customer);
-        return repo.findById(customer.getId()).orElseThrow();
+    public Customer saveCustomer(CustomerDTO customer) {
+        return repo.save(new Customer(null, customer.firstname(), customer.lastname()));
     }
     public Customer getCustomerById(String id){return repo.findById(id).orElseThrow();
     }
     public void deleteCustomerById(String id) {
         repo.deleteById(id);
+    }
+
+    public Customer updateCustomer(String id, CustomerDTO customerDTO ){
+        Customer customer = getCustomerById(id);
+        customer.setFirstname(customerDTO.firstname());
+        customer.setLastname(customerDTO.lastname());
+        return repo.save(customer);
     }
 
 

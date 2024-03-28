@@ -1,5 +1,5 @@
 import {Customer} from "../../types/Customer.ts";
-import {useNavigate} from "react-router-dom";
+
 
 type WorkoutCardProps = {
     customer: Customer
@@ -13,7 +13,7 @@ export default function CustomerCard({customer}: Readonly<WorkoutCardProps>){
     return (
         <div>
             <p>Vorname: {customer.firstname}</p>
-            <p>Nachnam: {customer.lastname}</p>
+            <p>Nachname: {customer.lastname}</p>
             <p>ID: {customer.id}</p>
         </div>
 
