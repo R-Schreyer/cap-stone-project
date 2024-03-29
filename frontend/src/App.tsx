@@ -6,6 +6,7 @@ import CreateNewCustomer from "./components/CreateNewCustomer/CreateNewCustomer.
 import {useEffect, useState} from "react";
 import {Customer} from "./types/Customer.ts";
 import axios from "axios";
+import "./App.css";
 
 export default function App() {
 

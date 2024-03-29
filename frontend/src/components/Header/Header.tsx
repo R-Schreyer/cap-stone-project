@@ -1,12 +1,12 @@
-
+import "./Header.css"
 
 export default function Header() {
 
 
 
     return (
-
-            <h1 style={{color: "black"}}>Lokalwaren Rothkreuz</h1>
-
+        <header className="header">
+            <h1>Lokalwaren Rothkreuz</h1>
+        </header>
     )
 }
