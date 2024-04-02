@@ -1,13 +1,27 @@
 import {Customer} from "../../types/Customer.ts";
 import axios from "axios";
+import React from "react";
 
 type CustomerListProps = {
     customers: Customer[],
+    setCustomers: React.Dispatch<React.SetStateAction<Customer[]>>
 }
 export default function CustomerList(props: Readonly<CustomerListProps>) {
     function deleteCustomer(id: string){
         axios.delete("/api/customers/" + id)
-            .then()
+            .then(() => {
+                axios.get("/api/customers")
+                    .then(response => {
+                        props.setCustomers(response.data);
+                        console.log("Customer list updated successfully:", response.data);
+                    })
+                    .catch(error => {
+                        console.error("Error loading customers:", error);
+                    });
+            })
+            .catch(error => {
+                console.error("Error deleting customer:", error);
+            });
     }
     return (
         <div>
