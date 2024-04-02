@@ -1,9 +1,16 @@
 import {Customer} from "../../types/Customer.ts";
+import axios from "axios";
 
 type CustomerListProps = {
-    customers: Customer[]
+    customers: Customer[],
 }
+
 export default function CustomerList(props: Readonly<CustomerListProps>) {
+
+    function deleteCustomer(id: string){
+        axios.delete("/api/customers/" + id)
+            .then()
+    }
     return (
         <div>
             <div className="customer-list">
@@ -23,6 +30,9 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                             <td>{customer.firstname}</td>
                             <td>{customer.lastname}</td>
                             <td>{customer.id}</td>
+                            <td>
+                                <button onClick={()=>deleteCustomer(customer.id)}>delete</button>
+                            </td>
                         </tr>
                     ))}
                 </table>
