@@ -1,15 +1,10 @@
 package org.example.backend.controller;
-
 import lombok.RequiredArgsConstructor;
 import org.example.backend.model.Customer;
 import org.example.backend.model.CustomerDTO;
 import org.example.backend.service.CustomerService;
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
-
 import java.util.List;
-
 @RestController
 @RequestMapping("/api/customers")
 @RequiredArgsConstructor

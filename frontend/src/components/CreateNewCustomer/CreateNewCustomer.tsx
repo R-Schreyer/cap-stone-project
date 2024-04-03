@@ -1,9 +1,7 @@
 import {ChangeEvent, FormEvent,useState} from "react";
-
 type CreateNewCustomerProps = {
     postCustomer: (firstname: string, lastname: string)=> void
 }
-
 export default function CreateNewCustomer(props:Readonly<CreateNewCustomerProps>) {
     const[firstname, setFirstname] = useState<string>("");
     const[lastname, setLastname] = useState("");

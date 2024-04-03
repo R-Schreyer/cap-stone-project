@@ -7,7 +7,6 @@ import {useEffect, useState} from "react";
 import {Customer} from "./types/Customer.ts";
 import axios from "axios";
 import "./App.css";
-
 export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
     function postCustomer(firstname: string, lastname: string) {
@@ -35,19 +34,3 @@ export default function App() {
         </Layout>
     )
 }
-
-/*import Header from "./components/Header/Header.tsx";
-import CustomerList from "./components/Customer/CustomerList.tsx";
-
-export default function App() {
-
-    return (
-        <>
-            <Header></Header>
-            <body>
-            <CustomerList></CustomerList>
-            </body>
-        </>
-
-    )
-}*/

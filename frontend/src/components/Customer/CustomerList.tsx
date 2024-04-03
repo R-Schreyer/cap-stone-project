@@ -1,7 +1,6 @@
 import {Customer} from "../../types/Customer.ts";
 import axios from "axios";
 import React from "react";
-
 type CustomerListProps = {
     customers: Customer[],
     setCustomers: React.Dispatch<React.SetStateAction<Customer[]>>

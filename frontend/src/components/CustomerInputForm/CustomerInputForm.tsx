@@ -1,18 +1,15 @@
 import React, {useState} from 'react';
-
 interface User {
     name: string;
     email: string;
     age: number;
 }
-
 const UserForm: React.FC = () => {
     const [userData, setUserData] = useState<User>({
         name: '',
         email: '',
         age: 0,
     });
-
     const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
         setUserData({
@@ -20,14 +17,12 @@ const UserForm: React.FC = () => {
             [name]: value,
         });
     };
-
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         // Hier kannst du die Daten an die CRUD-Operationen oder die Datenbank übergeben
         console.log('Gesendete Benutzerdaten:', userData);
         // Beispiel: saveUserData(userData);
     };
-
     return (
         <form onSubmit={handleSubmit}>
             <div>
@@ -67,5 +62,4 @@ const UserForm: React.FC = () => {
         </form>
     );
 };
-
 export default UserForm;
