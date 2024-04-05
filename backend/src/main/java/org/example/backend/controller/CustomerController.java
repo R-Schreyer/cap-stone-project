@@ -12,8 +12,7 @@ public class CustomerController {
     private final CustomerService service;
     @GetMapping
     public List<Customer> getAllCustomers(){
-        List<Customer> allCustomers = service.getAllCustomers();
-        return allCustomers;
+        return service.getAllCustomers();
     }
     @GetMapping("{id}")
     public Customer getCustomerById(@PathVariable String id) {
