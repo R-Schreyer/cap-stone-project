@@ -2,6 +2,7 @@ package org.example.backend.service;
 
 import net.bytebuddy.NamingStrategy;
 import org.example.backend.model.Customer;
+import org.example.backend.model.CustomerDTO;
 import org.example.backend.repository.CustomerRepository;
 import org.junit.jupiter.api.Test;
 
@@ -10,12 +11,9 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-
 class CustomerServiceTest {
-
     CustomerRepository customerRepository = mock(CustomerRepository.class);
     CustomerService customerService = new CustomerService(customerRepository);
-
     @Test
     void getAllCustomers() {
         //GIVEN
@@ -29,7 +27,6 @@ class CustomerServiceTest {
         verify(customerRepository).findAll();
         assertEquals(customers, actual);
     }
-
     @Test
     void getCustomerById() {
         //GIVEN
@@ -41,15 +38,28 @@ class CustomerServiceTest {
         verify(customerRepository).findById("001");
         assertEquals(c3, actual);
     }
-
     @Test
     void saveCustomer() {
+        //GIVEN
+        CustomerDTO c1 = new CustomerDTO("Max", "Mustermann");
+        Customer c2 = new Customer(null, "Max", "Mustermann");
+                when(customerRepository.save(c2)).thenReturn(c2);
+        //WHEN
+        Customer actual = customerService.saveCustomer(c1);
+        //THEN
+        verify(customerRepository).save(c2);
+        assertEquals(c2, actual);
     }
-
     @Test
     void deleteCustomerById() {
-    }
+    //GIVEN
+        doNothing().when(customerRepository).deleteById("001");
+        //WHEN
+        customerService.deleteCustomerById("001");
+        //THEN
+        verify(customerRepository).deleteById("001");
 
+    }
     @Test
     void updateCustomer() {
     }
