@@ -1,5 +1,5 @@
 package org.example.backend.controller;
-import com.fasterxml.jackson.databind.ObjectMapper;
+
 import org.example.backend.model.Product;
 import org.example.backend.model.ProductDTO;
 import org.example.backend.service.ProductService;
@@ -10,7 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.math.BigDecimal;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -22,11 +24,9 @@ public class ProductControllerTest {
     private MockMvc mockMvc;
     @Autowired
     private ProductService productService;
-    @Autowired
-    private ObjectMapper objectMapper;
     @Test
     @DirtiesContext
-    public void getAllProducts() throws Exception {
+    void getAllProducts() throws Exception {
         BigDecimal price = BigDecimal.valueOf(0.29);
         ProductDTO productToSave = new ProductDTO ("Water", "Drinks", price);
         Product productSaved = productService.saveProduct(productToSave);
@@ -41,7 +41,7 @@ public class ProductControllerTest {
     }
     @Test
     @DirtiesContext
-    public void getProductById() throws Exception {
+    void getProductById() throws Exception {
         BigDecimal price = BigDecimal.valueOf(0.29);
         ProductDTO productToSave = new ProductDTO ("Water", "Drinks", price);
         Product productSaved = productService.saveProduct(productToSave);
@@ -55,7 +55,7 @@ public class ProductControllerTest {
     }
     @Test
     @DirtiesContext
-    public void saveNewProduct() throws Exception {
+    void saveNewProduct() throws Exception {
         String productJson = "{\"productName\": \"Water\", \"category\": \"Drinks\"}";
         mockMvc.perform(post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)

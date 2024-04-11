@@ -1,10 +1,6 @@
 package org.example.backend.service;
-
-import org.example.backend.model.Customer;
-import org.example.backend.model.CustomerDTO;
 import org.example.backend.model.Product;
 import org.example.backend.model.ProductDTO;
-import org.example.backend.repository.CustomerRepository;
 import org.example.backend.repository.ProductRepository;
 import org.junit.jupiter.api.Test;
 
