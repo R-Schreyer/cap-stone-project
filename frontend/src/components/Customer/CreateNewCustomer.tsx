@@ -25,16 +25,16 @@ export default function CreateNewCustomer(props: Readonly<CreateNewCustomerProps
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Vorname:
-                    <input type="text"
-                           value={firstname}
-                           onChange={handleChangeFirstname}/>
-                </label>
-                <label>Nachname:
-                    <input type="text"
-                           value={lastname}
-                           onChange={handleChangeLastname}/>
-                </label>
+                <label>Vorname:</label>
+                <input type="text"
+                       value={firstname}
+                       onChange={handleChangeFirstname}/>
+
+                <label>Nachname:</label>
+                <input type="text"
+                       value={lastname}
+                       onChange={handleChangeLastname}/>
+
                 <button>Submit</button>
             </form>
         </div>

@@ -17,14 +17,12 @@ export default function ChangeCustomer(props: Readonly<CustomerChangeProps>) {
 
     return (
         <form onSubmit={handleSubmit}>
-            <label>
-                Firstname:
-                <input type="text" value={firstname} onChange={(event)=>setFirstname(event.target.value)} />
-            </label>
-            <label>
-                Lastname:
-                <input type="text" value={lastname} onChange={(event)=>setLastname(event.target.value)} />
-            </label>
+            <label>Firstname:</label>
+            <input type="text" value={firstname} onChange={(event) => setFirstname(event.target.value)}/>
+
+            <label>Lastname:</label>
+            <input type="text" value={lastname} onChange={(event) => setLastname(event.target.value)}/>
+
             <button type="submit">Save</button>
         </form>
     );

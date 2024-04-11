@@ -33,22 +33,22 @@ export default function CreateNewProduct(props: Readonly<CreateNewProductProps>)
     return (
         <div>
             <form onSubmit={handleSubmit}>
-                <label>Produktname:
-                    <input type="text"
-                           value={productName}
-                           onChange={handleChangeProductName}/>
-                </label>
-                <label>Kategorie:
-                    <input type="text"
-                           value={category}
-                           onChange={handleChangeCategory}/>
-                </label>
-                <label>Preis:
-                    <input type="number"
-                           step="0.01"
-                           value={pricePerPiece !== null ? pricePerPiece.toString() : ''}
-                           onChange={handleChangePricePerPiece}/>
-                </label>
+                <label>Produktname:</label>
+                <input type="text"
+                       value={productName}
+                       onChange={handleChangeProductName}/>
+
+                <label>Kategorie:</label>
+                <input type="text"
+                       value={category}
+                       onChange={handleChangeCategory}/>
+
+                <label>Preis:</label>
+                <input type="number"
+                       step="0.01"
+                       value={pricePerPiece !== null ? pricePerPiece.toString() : ''}
+                       onChange={handleChangePricePerPiece}/>
+
                 <button>Submit</button>
             </form>
         </div>
