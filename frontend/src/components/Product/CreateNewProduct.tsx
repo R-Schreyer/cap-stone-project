@@ -3,6 +3,7 @@ import {ChangeEvent, FormEvent, useState} from "react";
 type CreateNewProductProps = {
     postProduct: (productName: string, category: string, pricePerPiece: number | null) => void
 }
+
 export default function CreateNewProduct(props: Readonly<CreateNewProductProps>) {
     const [productName, setProductName] = useState<string>("")
     const [category, setCategory] = useState<string>("")
@@ -18,11 +19,12 @@ export default function CreateNewProduct(props: Readonly<CreateNewProductProps>)
         setCategory(event.target.value)
     }
 
-    function handleChangePricePerPiece(event: ChangeEvent<HTMLInputElement>){
+    function handleChangePricePerPiece(event: ChangeEvent<HTMLInputElement>) {
         console.log(event);
         const newValue = parseFloat(event.target.value);
         setPricePerPiece(isNaN(newValue) ? null : newValue)
     }
+
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
         props.postProduct(productName, category, pricePerPiece)
@@ -51,5 +53,4 @@ export default function CreateNewProduct(props: Readonly<CreateNewProductProps>)
             </form>
         </div>
     )
-
 }

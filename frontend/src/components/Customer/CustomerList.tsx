@@ -10,8 +10,9 @@ type CustomerListProps = {
 }
 
 export default function CustomerList(props: Readonly<CustomerListProps>) {
-    const[editMode, setEditMode]= useState(false)
-    const[customer, setCustomer]= useState<Customer>()
+    const [editMode, setEditMode] = useState(false)
+    const [customer, setCustomer] = useState<Customer>()
+
     function deleteCustomer(id: string) {
         axios.delete("/api/customers/" + id)
             .then(() => {
@@ -28,34 +29,34 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                 console.error("Error deleting customer:", error);
             });
     }
-        function updateCustomer(id: string, firstname: string, lastname: string){
+
+    function updateCustomer(id: string, firstname: string, lastname: string) {
         props.updateCustomer(id, firstname, lastname)
-            setEditMode(false);
-        }
+        setEditMode(false);
+    }
+
     return (
         <div>
             <div className="customer-list">
                 <h2>Customer List</h2>
                 <table>
                     {props.customers.map((customer) => (
-                        <>
-                            <tr>
-                                <td>{customer.firstname}</td>
-                                <td>{customer.lastname}</td>
-                                <td>{customer.id}</td>
-                                <td>
-                                    <button onClick={() => deleteCustomer(customer.id)}>delete</button>
-                                    <button onClick={()=> {
-                                        setCustomer(customer)
-                                        setEditMode(true)
-                                    }}>Edit</button>
-                                </td>
-                            </tr>
-
-                        </>
+                        <tr>
+                            <td>{customer.firstname}</td>
+                            <td>{customer.lastname}</td>
+                            <td>{customer.id}</td>
+                            <td>
+                                <button onClick={() => deleteCustomer(customer.id)}>delete</button>
+                                <button onClick={() => {
+                                    setCustomer(customer)
+                                    setEditMode(true)
+                                }}>Edit
+                                </button>
+                            </td>
+                        </tr>
                     ))}
                 </table>
-                {editMode && customer &&<ChangeCustomer customer={customer} updateCustomer={updateCustomer}/>}
+                {editMode && customer && <ChangeCustomer customer={customer} updateCustomer={updateCustomer}/>}
             </div>
         </div>
     )

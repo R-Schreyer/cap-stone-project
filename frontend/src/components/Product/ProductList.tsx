@@ -1,6 +1,7 @@
 import axios from "axios";
 import React from "react";
 import {Product} from "../../types/Product.ts";
+
 type ProductListProps = {
     products: Product[],
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>
@@ -28,7 +29,7 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                 <h2>Product List</h2>
                 <table>
                     {props.products.map((product) => (
-                        <tr>
+                        <tr key={product.id}>
                             <td>{product.productName}</td>
                             <td>{product.category}</td>
                             <td>{product.pricePerPiece}</td>
