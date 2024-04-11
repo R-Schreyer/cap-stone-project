@@ -11,7 +11,7 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 
-public class ProductServiceTest {
+class ProductServiceTest {
     ProductRepository productRepository = mock(ProductRepository.class);
     ProductService productService = new ProductService(productRepository);
     @Test
