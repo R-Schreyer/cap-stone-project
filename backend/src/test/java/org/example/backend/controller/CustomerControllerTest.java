@@ -24,32 +24,36 @@ class CustomerControllerTest {
     @Test
     @DirtiesContext
     void getAllCustomers() throws Exception {
-        CustomerDTO customerToSave = new CustomerDTO ("John", "Doe");
+        CustomerDTO customerToSave = new CustomerDTO("John", "Doe", "mühlweg1", "john-doe@gmx.de");
         Customer customerSaved = customerService.saveCustomer(customerToSave);
         mockMvc.perform(get("/api/customers"))
                 .andExpect(status().isOk())
                 .andExpect(content().json("""
                         [{
                         "firstname":  "John",
-                        "lastname":  "Doe"}]"""))
+                        "lastname":  "Doe",
+                        "address":  "mühlweg1",
+                        "email":  "john-doe@gmx.de"}]"""))
                 .andExpect(jsonPath("$[0].id").value(customerSaved.getId()));
     }
     @Test
     @DirtiesContext
     void getCustomerById() throws Exception {
-        CustomerDTO customerToSave = new CustomerDTO ("John", "Doe");
+        CustomerDTO customerToSave = new CustomerDTO("John", "Doe", "mühlweg1", "john-doe@gmx.de");
         Customer customerSaved = customerService.saveCustomer(customerToSave);
         mockMvc.perform(get("/api/customers/{id}", customerSaved.getId()))
                 .andExpect(status().isOk())
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").value(customerSaved.getId()))
                 .andExpect(jsonPath("$.firstname").value("John"))
-                .andExpect(jsonPath("$.lastname").value("Doe"));
+                .andExpect(jsonPath("$.lastname").value("Doe"))
+                .andExpect(jsonPath("$.address").value("mühlweg1"))
+                .andExpect(jsonPath("$.email").value("john-doe@gmx.de"));
     }
     @Test
     @DirtiesContext
     void saveNewCustomer() throws Exception {
-        String customerJson = "{\"firstname\": \"Jane\", \"lastname\": \"Doe\"}";
+        String customerJson = "{\"firstname\": \"Jane\", \"lastname\": \"Doe\", \"address\": \"mühlweg1\", \"email\": \"jane-doe@gmx.de\"}";
         mockMvc.perform(post("/api/customers")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(customerJson))
@@ -57,7 +61,9 @@ class CustomerControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.firstname").value("Jane"))
-                .andExpect(jsonPath("$.lastname").value("Doe"));
+                .andExpect(jsonPath("$.lastname").value("Doe"))
+                .andExpect(jsonPath("$.address").value("mühlweg1"))
+                .andExpect(jsonPath("$.email").value("jane-doe@gmx.de"));
     }
 }
 
