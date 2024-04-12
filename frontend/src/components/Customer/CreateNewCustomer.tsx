@@ -1,11 +1,13 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 
 type CreateNewCustomerProps = {
-    postCustomer: (firstname: string, lastname: string) => void
+    postCustomer: (firstname: string, lastname: string, address: string, email: string) => void
 }
 export default function CreateNewCustomer(props: Readonly<CreateNewCustomerProps>) {
     const [firstname, setFirstname] = useState<string>("");
     const [lastname, setLastname] = useState("");
+    const [address, setAddress] = useState<string>("");
+    const [email, setEmail] = useState("");
 
     function handleChangeFirstname(event: ChangeEvent<HTMLInputElement>) {
         console.log(event);
@@ -17,9 +19,19 @@ export default function CreateNewCustomer(props: Readonly<CreateNewCustomerProps
         setLastname(event.target.value)
     }
 
+    function handleChangeAddress(event: ChangeEvent<HTMLInputElement>) {
+        console.log(event);
+        setAddress(event.target.value)
+    }
+
+    function handleChangeEmail(event: ChangeEvent<HTMLInputElement>) {
+        console.log(event);
+        setEmail(event.target.value)
+    }
+
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        props.postCustomer(firstname, lastname)
+        props.postCustomer(firstname, lastname, address, email)
     }
 
     return (
@@ -36,6 +48,20 @@ export default function CreateNewCustomer(props: Readonly<CreateNewCustomerProps
                        type="text"
                        value={lastname}
                        onChange={handleChangeLastname}/>
+
+                <label htmlFor={"address"}>Adresse:</label>
+                <input name="address"
+                       type="text"
+                       value={address}
+                       onChange={handleChangeAddress}/>
+
+
+                <label htmlFor={"email"}>Email:</label>
+                <input name="email"
+                       type="text"
+                       value={email}
+                       onChange={handleChangeEmail}/>
+
 
                 <button>Submit</button>
             </form>

@@ -16,9 +16,9 @@ class CustomerServiceTest {
     @Test
     void getAllCustomers() {
         //GIVEN
-        Customer c1 = new Customer(null, "Max", "Mustermann", "lange-Strasse1", "max-mustermann@gmx.de");
-        Customer c2 = new Customer(null, "Peter", "Pan", "lange-Strasse2", "peter-pan@gmx.de");
-        List<Customer> customers = List.of(c1, c2);
+        Customer customer1 = new Customer(null, "Max", "Mustermann", "lange-Strasse1", "max-mustermann@gmx.de");
+        Customer customer2 = new Customer(null, "Peter", "Pan", "lange-Strasse2", "peter-pan@gmx.de");
+        List<Customer> customers = List.of(customer1, customer2);
         when(customerRepository.findAll()).thenReturn(customers);
         //WHEN
         List<Customer> actual = customerService.getAllCustomers();
@@ -29,13 +29,13 @@ class CustomerServiceTest {
     @Test
     void getCustomerById() {
         //GIVEN
-        Customer c3 = new Customer("001", "Peter", "Lustig", "lange-Strasse3", "peter-lustig@gmx.de");
-        when(customerRepository.findById("001")).thenReturn(Optional.of(c3));
+        Customer customer3 = new Customer("001", "Peter", "Lustig", "lange-Strasse3", "peter-lustig@gmx.de");
+        when(customerRepository.findById("001")).thenReturn(Optional.of(customer3));
         //WHEN
         Customer actual = customerService.getCustomerById("001");
         //THEN
         verify(customerRepository).findById("001");
-        assertEquals(c3, actual);
+        assertEquals(customer3, actual);
     }
     @Test
     void saveCustomer() {

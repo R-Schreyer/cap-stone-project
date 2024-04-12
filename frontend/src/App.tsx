@@ -1,4 +1,3 @@
-
 import CustomerList from "./components/Customer/CustomerList.tsx";
 import Layout from "./components/Layout/Layout.tsx";
 import {Route, Routes} from "react-router-dom";
@@ -15,19 +14,24 @@ export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
     const [products, setProducts] = useState<Product[]>([])
 
-    function updateCustomer(id: string, firstname: string, lastname: string) {
+    function updateCustomer(id: string, firstname: string, lastname: string, address: string, email: string) {
         axios.put("/api/customers/" + id,{
             firstname: firstname,
-            lastname: lastname
+            lastname: lastname,
+            address: address,
+            email: email
         })
             .then(()=>fetchCustomers())
 
-        console.log("Updated customer:", firstname, lastname);
+        console.log("Updated customer:", firstname, lastname, address, email);
     }
-    function postCustomer(firstname: string, lastname: string) {
+
+    function postCustomer(firstname: string, lastname: string, address: string, email: string) {
         axios.post("/api/customers",{
             firstname: firstname,
-            lastname: lastname
+            lastname: lastname,
+            address: address,
+            email: email
         })
             .then(() => fetchCustomers())
     }

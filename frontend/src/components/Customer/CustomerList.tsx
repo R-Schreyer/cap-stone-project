@@ -6,7 +6,7 @@ import ChangeCustomer from "./ChangeCustomer.tsx";
 type CustomerListProps = {
     customers: Customer[],
     setCustomers: React.Dispatch<React.SetStateAction<Customer[]>>
-    updateCustomer: (id: string, firstname: string, lastname: string) => void
+    updateCustomer: (id: string, firstname: string, lastname: string, address: string, email: string) => void
 }
 
 export default function CustomerList(props: Readonly<CustomerListProps>) {
@@ -30,8 +30,8 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
             });
     }
 
-    function updateCustomer(id: string, firstname: string, lastname: string) {
-        props.updateCustomer(id, firstname, lastname)
+    function updateCustomer(id: string, firstname: string, lastname: string, address: string, email: string) {
+        props.updateCustomer(id, firstname, lastname, address, email)
         setEditMode(false);
     }
 
@@ -44,7 +44,8 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                         <tr>
                             <td>{customer.firstname}</td>
                             <td>{customer.lastname}</td>
-                            <td>{customer.id}</td>
+                            <td>{customer.address}</td>
+                            <td>{customer.email}</td>
                             <td>
                                 <button onClick={() => deleteCustomer(customer.id)}>delete</button>
                                 <button onClick={() => {
