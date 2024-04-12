@@ -1,14 +1,29 @@
-// import Header from "./components/Header/Header.tsx";
+
 import CustomerList from "./components/Customer/CustomerList.tsx";
 import Layout from "./components/Layout/Layout.tsx";
 import {Route, Routes} from "react-router-dom";
-import CreateNewCustomer from "./components/CreateNewCustomer/CreateNewCustomer.tsx";
+import CreateNewCustomer from "./components/Customer/CreateNewCustomer.tsx";
 import {useEffect, useState} from "react";
 import {Customer} from "./types/Customer.ts";
 import axios from "axios";
 import "./App.css";
+import CreateNewProduct from "./components/Product/CreateNewProduct.tsx";
+import ProductList from "./components/Product/ProductList.tsx";
+import {Product} from "./types/Product.ts";
+
 export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
+    const [products, setProducts] = useState<Product[]>([])
+
+    function updateCustomer(id: string, firstname: string, lastname: string) {
+        axios.put("/api/customers/" + id,{
+            firstname: firstname,
+            lastname: lastname
+        })
+            .then(()=>fetchCustomers())
+
+        console.log("Updated customer:", firstname, lastname);
+    }
     function postCustomer(firstname: string, lastname: string) {
         axios.post("/api/customers",{
             firstname: firstname,
@@ -23,13 +38,28 @@ export default function App() {
         fetchCustomers();
     }, []);
     console.log("Kunden: ", customers);
+    function postProduct(productName: string, category: string, pricePerPiece: number|null) {
+        axios.post("/api/products",{
+            productName: productName,
+            category:  category,
+            pricePerPiece: pricePerPiece
+        })
+            .then(() => fetchProducts())
+    }
+    function fetchProducts() {
+        axios.get("/api/products").then(response => setProducts(response.data))
+    }
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+    console.log("Kunden: ", customers);
     return (
         <Layout>
             <Routes>
-                <Route path="/customerList" element={<CustomerList customers={customers} setCustomers={setCustomers}/>}/>
+                <Route path="/customerList" element={<CustomerList updateCustomer={updateCustomer} customers={customers} setCustomers={setCustomers}/>}/>
                 <Route path="/createNewCustomer" element={<CreateNewCustomer postCustomer={postCustomer}/>}/>
-                {/*<Route path="/workouts" element={<Workouts workouts={workouts}/>}/>
-                <Route path="/workouts/:id" element={<WorkoutDetailsPage/> }/>*/}
+                <Route path="/productList" element={<ProductList products={products} setProducts={setProducts}/>}/>
+                <Route path="/createNewProduct" element={<CreateNewProduct postProduct={postProduct}/>}/>
             </Routes>
         </Layout>
     )

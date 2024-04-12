@@ -1,6 +1,5 @@
 package org.example.backend.service;
 
-import net.bytebuddy.NamingStrategy;
 import org.example.backend.model.Customer;
 import org.example.backend.model.CustomerDTO;
 import org.example.backend.repository.CustomerRepository;
@@ -9,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.util.List;
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.*;
 class CustomerServiceTest {
     CustomerRepository customerRepository = mock(CustomerRepository.class);

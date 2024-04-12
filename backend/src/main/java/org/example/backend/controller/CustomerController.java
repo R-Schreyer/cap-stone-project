@@ -17,29 +17,21 @@ public class CustomerController {
     public List<Customer> getAllCustomers(){
         return service.getAllCustomers();
     }
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     public Customer getCustomerById(@PathVariable String id) {
         return service.getCustomerById(id);
     }
-
     @Autowired
     private CustomerService customerService;
-
     @PostMapping
     public ResponseEntity<Customer> saveNewCustomer(@RequestBody CustomerDTO customerDTO) {
         Customer newCustomer = customerService.saveCustomer(customerDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newCustomer);
     }
-    /*@PostMapping
-    public Customer saveNewCustomer(@RequestBody CustomerDTO customer){
-        return service.saveCustomer(customer);
-    }
-    */
-    @PutMapping("{id}")
+        @PutMapping("/{id}")
     public Customer updateCustomerById(@PathVariable String id, @RequestBody CustomerDTO customer){
        return service.updateCustomer(id, customer);
     }
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     public void deleteCustomerById(@PathVariable String id){service.deleteCustomerById(id);}
-
 }

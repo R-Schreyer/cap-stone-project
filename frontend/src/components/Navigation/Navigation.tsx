@@ -11,27 +11,13 @@ export default function Navigation(): JSX.Element{
                 <li>
                     <Link to={"/CreateNewCustomer"}>Kunden erstellen</Link>
                 </li>
-                {/*<li>
-                    <Link to={"/workoutplan"}>Workout-Plan</Link>
-                </li>*/}
-            </ul>
-        </nav>
-    )
-}
-
-
-
-
-/*export default function Navigation(): JSX.Element {
-    return (
-
-        <nav className="nav">
-            <ul>
                 <li>
-                    <Link to={"/customer"}>Profile</Link>
+                    <Link to={"/ProductList"}>Produktliste</Link>
+                </li>
+                <li>
+                    <Link to={"/CreateNewProduct"}>Produkt erstellen</Link>
                 </li>
             </ul>
         </nav>
     )
-}*/
-
+}
