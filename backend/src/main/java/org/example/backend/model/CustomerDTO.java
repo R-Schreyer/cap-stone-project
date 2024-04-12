@@ -1,3 +1,4 @@
 package org.example.backend.model;
-public record CustomerDTO(String firstname, String lastname) {
+
+public record CustomerDTO(String firstname, String lastname, String address, String email) {
 }

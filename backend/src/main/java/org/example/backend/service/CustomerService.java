@@ -16,7 +16,7 @@ public class CustomerService {
         return repo.findAll();
     }
     public Customer saveCustomer(CustomerDTO customer) {
-        return repo.save(new Customer(null, customer.firstname(), customer.lastname()));
+        return repo.save(new Customer(null, customer.firstname(), customer.lastname(), customer.address(), customer.email()));
     }
     public Customer getCustomerById(String id){return repo.findById(id).orElseThrow();
     }
@@ -28,6 +28,8 @@ public class CustomerService {
         Customer customer = getCustomerById(id);
         customer.setFirstname(customerDTO.firstname());
         customer.setLastname(customerDTO.lastname());
+        customer.setAddress(customerDTO.address());
+        customer.setEmail(customerDTO.email());
         return repo.save(customer);
     }
 
