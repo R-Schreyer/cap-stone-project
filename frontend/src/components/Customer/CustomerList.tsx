@@ -3,8 +3,7 @@ import axios from "axios";
 import React, {useState} from "react";
 import ChangeCustomer from "./ChangeCustomer.tsx";
 import {Order} from "../../types/Order.ts";
-import ViewOrders from "../Order/ViewOrders.tsx";
-
+import {useNavigate} from "react-router-dom"; // useNavigate importieren
 
 type CustomerListProps = {
     customers: Customer[],
@@ -14,9 +13,12 @@ type CustomerListProps = {
 }
 
 export default function CustomerList(props: Readonly<CustomerListProps>) {
+    const navigate = useNavigate(); // useNavigate verwenden
+
     const [editMode, setEditMode] = useState(false)
     const [customer, setCustomer] = useState<Customer>()
     const [customerOrderList, setCustomerOrderList] = useState<Order[]>([])
+
     function deleteCustomer(id: string) {
         axios.delete("/api/customers/" + id)
             .then(() => {
@@ -44,6 +46,7 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
         if (selectedCustomer) {
             setCustomerOrderList(selectedCustomer.customerOrderList);
             props.sendCustomerOrderList(selectedCustomer.customerOrderList);
+            navigate("/viewOrders"); // Navigiere zur ViewOrders-Seite
         }
     }
 
@@ -59,13 +62,10 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                             <td>{customer.address}</td>
                             <td>{customer.email}</td>
                             <td>
-                                <button onClick={() =>
-                                    deleteCustomer(customer.id)
-                                }>delete
-                                </button>
+                                <button onClick={() => deleteCustomer(customer.id)}>delete</button>
                                 <button onClick={() => {
-                                    setCustomer(customer)
-                                    setEditMode(true)
+                                    setCustomer(customer);
+                                    setEditMode(true);
                                 }}>Edit
                                 </button>
                                 <button onClick={() => handleViewOrdersClick(customer.id)}>View Orders</button>
@@ -74,7 +74,6 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                     ))}
                 </table>
                 {editMode && customer && <ChangeCustomer customer={customer} updateCustomer={updateCustomer}/>}
-                {customerOrderList.length > 0 && <ViewOrders customerOrderList={customerOrderList}/>}
             </div>
         </div>
     )
