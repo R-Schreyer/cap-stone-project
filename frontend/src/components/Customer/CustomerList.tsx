@@ -41,17 +41,23 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                 <h2>Customer List</h2>
                 <table>
                     {props.customers.map((customer) => (
-                        <tr>
+                        <tr key={customer.id}>
                             <td>{customer.firstname}</td>
                             <td>{customer.lastname}</td>
                             <td>{customer.address}</td>
                             <td>{customer.email}</td>
                             <td>
-                                <button onClick={() => deleteCustomer(customer.id)}>delete</button>
+                                <button onClick={() =>
+                                    deleteCustomer(customer.id)
+                                }>delete
+                                </button>
                                 <button onClick={() => {
                                     setCustomer(customer)
                                     setEditMode(true)
                                 }}>Edit
+                                </button>
+                                <button
+                                    onClick={() => console.log("Bestellungen anzeigen für:", customer)}>Bestellungen
                                 </button>
                             </td>
                         </tr>
