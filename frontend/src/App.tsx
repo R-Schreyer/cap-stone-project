@@ -57,10 +57,19 @@ export default function App() {
         fetchProducts();
     }, []);
     console.log("Kunden: ", customers);
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function sendCustomerOrderList(orderList: any) {
+        // Hier die Logik zur Verarbeitung der Bestellliste einfügen
+        console.log("Received customer order list:", orderList);
+    }
+    
     return (
         <Layout>
             <Routes>
-                <Route path="/customerList" element={<CustomerList updateCustomer={updateCustomer} customers={customers} setCustomers={setCustomers}/>}/>
+                <Route path="/customerList" element={<CustomerList updateCustomer={updateCustomer} customers={customers}
+                                                                   setCustomers={setCustomers}
+                                                                   sendCustomerOrderList={sendCustomerOrderList}/>}/>
                 <Route path="/createNewCustomer" element={<CreateNewCustomer postCustomer={postCustomer}/>}/>
                 <Route path="/productList" element={<ProductList products={products} setProducts={setProducts}/>}/>
                 <Route path="/createNewProduct" element={<CreateNewProduct postProduct={postProduct}/>}/>
