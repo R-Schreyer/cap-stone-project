@@ -3,7 +3,7 @@ import axios from "axios";
 import React, {useState} from "react";
 import ChangeCustomer from "./ChangeCustomer.tsx";
 import {Order} from "../../types/Order.ts";
-import {useNavigate} from "react-router-dom"; // useNavigate importieren
+import {useNavigate} from "react-router-dom";
 
 type CustomerListProps = {
     customers: Customer[],
@@ -41,14 +41,14 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
         setEditMode(false);
     }
 
-    function handleViewOrdersClick(customerId: string) {
+    /*function handleViewOrdersClick(customerId: string) {
         const selectedCustomer = props.customers.find(customer => customer.id === customerId);
         if (selectedCustomer) {
             setCustomerOrderList(selectedCustomer.customerOrderList);
             props.sendCustomerOrderList(selectedCustomer.customerOrderList);
             navigate("/viewOrders"); // Navigiere zur ViewOrders-Seite
         }
-    }
+    }*/
 
     return (
         <div>
@@ -68,7 +68,7 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                                     setEditMode(true);
                                 }}>Edit
                                 </button>
-                                <button onClick={() => handleViewOrdersClick(customer.id)}>View Orders</button>
+                                <button onClick={() => navigate("/ViewOrders/" + customer.id)}>View Orders</button>
                             </td>
                         </tr>
                     ))}

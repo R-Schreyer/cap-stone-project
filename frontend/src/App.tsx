@@ -9,6 +9,7 @@ import "./App.css";
 import CreateNewProduct from "./components/Product/CreateNewProduct.tsx";
 import ProductList from "./components/Product/ProductList.tsx";
 import {Product} from "./types/Product.ts";
+import ViewOrders from "./components/Order/ViewOrders.tsx";
 
 export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
@@ -58,6 +59,7 @@ export default function App() {
     }, []);
     console.log("Kunden: ", customers);
 
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function sendCustomerOrderList(orderList: any) {
         // Hier die Logik zur Verarbeitung der Bestellliste einfügen
@@ -65,6 +67,7 @@ export default function App() {
     }
     
     return (
+        <>
         <Layout>
             <Routes>
                 <Route path="/customerList" element={<CustomerList updateCustomer={updateCustomer} customers={customers}
@@ -75,5 +78,9 @@ export default function App() {
                 <Route path="/createNewProduct" element={<CreateNewProduct postProduct={postProduct}/>}/>
             </Routes>
         </Layout>
+            <Routes>
+                <Route path={"/ViewOrders/:id"} element={<ViewOrders customers={customers}/>}/>
+            </Routes>
+        </>
     )
 }

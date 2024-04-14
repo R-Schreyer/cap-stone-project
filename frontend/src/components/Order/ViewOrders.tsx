@@ -1,25 +1,28 @@
-import {Order} from "../../types/Order.ts";
+import {Customer} from "../../types/Customer.ts";
+import {useParams} from "react-router-dom";
 
 interface ViewOrdersProps {
-    customerOrderList: Order[];
+    customers: Customer[];
 }
 
 export default function ViewOrders(props: ViewOrdersProps) {
+    const {id = ''} = useParams<string>();
     return (
-        <div>
+        <h2>Orders</h2>
+        /*<div>
             <h2>Orders</h2>
             <ul>
                 {props.customerOrderList.map(order => (
                     <li key={order.id}>
-                        {/* Hier könntest du die Informationen für jede Bestellung anzeigen */}
-                        {/* Zum Beispiel: */}
+                        {/!* Hier könntest du die Informationen für jede Bestellung anzeigen *!/}
+                        {/!* Zum Beispiel: *!/}
                         <div>ID: {order.id}</div>
                         <div>Price: {order.price}</div>
-                        {/* Weitere Bestellinformationen hier einfügen */}
+                        {/!* Weitere Bestellinformationen hier einfügen *!/}
                     </li>
                 ))}
             </ul>
-        </div>
+        </div>*/
     );
 }
 
