@@ -16,6 +16,7 @@ public class Order {
     private List<Product> productList;
     private BigDecimal price;
     private Date orderDate;
+    private String customerId;
 
     // Konstruktor, Getter und Setter hier einfügen...
 }

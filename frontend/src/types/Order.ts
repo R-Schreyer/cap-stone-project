@@ -5,4 +5,5 @@ export type Order = {
     productList: Product[]; // Liste der Produkte in der Bestellung
     price: number; // Preis der Bestellung
     orderDate: Date; // Datum der Bestellung
+    customerId: string;
 }

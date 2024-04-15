@@ -1,55 +1,44 @@
+import {useNavigate, useParams} from 'react-router-dom';
 import {Customer} from "../../types/Customer.ts";
-import {useParams} from "react-router-dom";
 
-interface ViewOrdersProps {
+type ViewOrdersProps = {
     customers: Customer[];
 }
 
-export default function ViewOrders(props: ViewOrdersProps) {
-    const {id = ''} = useParams<string>();
-    return (
-        <h2>Orders</h2>
-        /*<div>
-            <h2>Orders</h2>
-            <ul>
-                {props.customerOrderList.map(order => (
-                    <li key={order.id}>
-                        {/!* Hier könntest du die Informationen für jede Bestellung anzeigen *!/}
-                        {/!* Zum Beispiel: *!/}
-                        <div>ID: {order.id}</div>
-                        <div>Price: {order.price}</div>
-                        {/!* Weitere Bestellinformationen hier einfügen *!/}
-                    </li>
-                ))}
-            </ul>
-        </div>*/
-    );
-}
+export default function ViewOrders({customers}: ViewOrdersProps) {
+    const {id} = useParams<{ id: string }>();
+    const customer = customers.find(customer => customer.id === id);
+    const navigate = useNavigate();
 
+    if (!customer) {
+        return <div>Kunde nicht gefunden</div>;
+    }
 
-/*import {Order} from "../../types/Order.ts";
-
-interface ViewOrdersProps {
-    customerOrderList: Order[];
-}
-
-function ViewOrders(props: ViewOrdersProps) {
     return (
         <div>
-            <h2>Orders</h2>
-            <ul>
-                {props.customerOrderList.map(order => (
-                    <li key={order.id}>
-                        {/!* Hier könntest du die Informationen für jede Bestellung anzeigen *!/}
-                        {/!* Zum Beispiel: *!/}
-                        <div>ID: {order.id}</div>
-                        <div>Price: {order.price}</div>
-                        {/!* Weitere Bestellinformationen hier einfügen *!/}
-                    </li>
+            <h1>Bestellungen für {customer.firstname} {customer.lastname}</h1>
+            <button onClick={() => navigate("/NewOrderPage/" + customer.id)}>Neue Bestellung</button>
+            {/*<table>
+                {customer.customerOrderList.map((order) => (
+                    <tr key={customer.id}>
+                        <td>{order.id}</td>
+                        <td>{order.price}</td>
+                    </tr>
                 ))}
-            </ul>
+            </table>*/}
+
+            {/*{customer.customerOrderList.length === 0 ? (
+                <p>Keine Bestellungen vorhanden</p>
+            ) : (
+                <ul>
+                    {customer.customerOrderList.map(order => (
+                        <li key={order.id}>
+                            <p>Bestellnummer: {order.id}</p>
+                            <p>Produkte:</p>
+                        </li>
+                    ))}
+                </ul>
+            )}*/}
         </div>
     );
 }
-
-export default ViewOrders;*/

@@ -10,6 +10,7 @@ import CreateNewProduct from "./components/Product/CreateNewProduct.tsx";
 import ProductList from "./components/Product/ProductList.tsx";
 import {Product} from "./types/Product.ts";
 import ViewOrders from "./components/Order/ViewOrders.tsx";
+import NewOrderPage from "./components/Order/NewOrderPage.tsx";
 
 export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
@@ -80,6 +81,9 @@ export default function App() {
         </Layout>
             <Routes>
                 <Route path={"/ViewOrders/:id"} element={<ViewOrders customers={customers}/>}/>
+                <Route path={"NewOrderPage/:id"} element={<NewOrderPage products={products}
+                                                                        setProducts={setProducts}
+                                                                        customers={customers}/>}/>
             </Routes>
         </>
     )

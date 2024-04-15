@@ -41,15 +41,6 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
         setEditMode(false);
     }
 
-    /*function handleViewOrdersClick(customerId: string) {
-        const selectedCustomer = props.customers.find(customer => customer.id === customerId);
-        if (selectedCustomer) {
-            setCustomerOrderList(selectedCustomer.customerOrderList);
-            props.sendCustomerOrderList(selectedCustomer.customerOrderList);
-            navigate("/viewOrders"); // Navigiere zur ViewOrders-Seite
-        }
-    }*/
-
     return (
         <div>
             <div className="customer-list">
