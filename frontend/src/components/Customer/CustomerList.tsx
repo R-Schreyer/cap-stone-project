@@ -17,7 +17,6 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
 
     const [editMode, setEditMode] = useState(false)
     const [customer, setCustomer] = useState<Customer>()
-    const [customerOrderList, setCustomerOrderList] = useState<Order[]>([])
 
     function deleteCustomer(id: string) {
         axios.delete("/api/customers/" + id)

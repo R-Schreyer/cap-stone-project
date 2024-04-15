@@ -83,7 +83,8 @@ export default function App() {
                 <Route path={"/ViewOrders/:id"} element={<ViewOrders customers={customers}/>}/>
                 <Route path={"NewOrderPage/:id"} element={<NewOrderPage products={products}
                                                                         setProducts={setProducts}
-                                                                        customers={customers}/>}/>
+                                                                        customers={customers}
+                                                                        fetchCustomers={fetchCustomers}/>}/>
             </Routes>
         </>
     )

@@ -18,14 +18,14 @@ export default function ViewOrders({customers}: ViewOrdersProps) {
         <div>
             <h1>Bestellungen für {customer.firstname} {customer.lastname}</h1>
             <button onClick={() => navigate("/NewOrderPage/" + customer.id)}>Neue Bestellung</button>
-            {/*<table>
+            <table>
                 {customer.customerOrderList.map((order) => (
-                    <tr key={customer.id}>
+                    <tr key={order.id}>
                         <td>{order.id}</td>
                         <td>{order.price}</td>
                     </tr>
                 ))}
-            </table>*/}
+            </table>
 
             {/*{customer.customerOrderList.length === 0 ? (
                 <p>Keine Bestellungen vorhanden</p>

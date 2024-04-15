@@ -2,8 +2,8 @@ import {Product} from "./Product.ts";
 
 export type Order = {
     id: string;
-    productList: Product[]; // Liste der Produkte in der Bestellung
-    price: number; // Preis der Bestellung
-    orderDate: Date; // Datum der Bestellung
+    productList: Product[];
+    price: number;
+    orderDate: Date;
     customerId: string;
 }
