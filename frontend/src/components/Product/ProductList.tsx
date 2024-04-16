@@ -32,8 +32,8 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                         <tr className="head-line">
                             <td>Produkt</td>
                             <td>Kategorie</td>
-                            <td>Produkt Id</td>
                             <td>Preis</td>
+                            <td>Produkt Id</td>
                         </tr>
                     </thead>
                     {props.products.map((product) => (
