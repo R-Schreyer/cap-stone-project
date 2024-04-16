@@ -19,6 +19,12 @@ export default function ViewOrders({customers}: ViewOrdersProps) {
             <h1>Bestellungen für {customer.firstname} {customer.lastname}</h1>
             <button onClick={() => navigate("/NewOrderPage/" + customer.id)}>Neue Bestellung</button>
             <table>
+                <>
+                    <tr className="head-line">
+                        <td>Bestellnummer</td>
+                        <td>Gesamtpreis</td>
+                    </tr>
+                </>
                 {customer.customerOrderList.map((order) => (
                     <tr key={order.id}>
                         <td>{order.id}</td>
@@ -26,19 +32,6 @@ export default function ViewOrders({customers}: ViewOrdersProps) {
                     </tr>
                 ))}
             </table>
-
-            {/*{customer.customerOrderList.length === 0 ? (
-                <p>Keine Bestellungen vorhanden</p>
-            ) : (
-                <ul>
-                    {customer.customerOrderList.map(order => (
-                        <li key={order.id}>
-                            <p>Bestellnummer: {order.id}</p>
-                            <p>Produkte:</p>
-                        </li>
-                    ))}
-                </ul>
-            )}*/}
         </div>
     );
 }

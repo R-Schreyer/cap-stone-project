@@ -6,6 +6,7 @@ import org.example.backend.model.CustomerDTO;
 import org.example.backend.repository.CustomerRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -16,7 +17,7 @@ public class CustomerService {
         return repo.findAll();
     }
     public Customer saveCustomer(CustomerDTO customer) {
-        return repo.save(new Customer(null, customer.firstname(), customer.lastname(), customer.address(), customer.email(), customer.customerOrderList()));
+        return repo.save(new Customer(null, customer.firstname(), customer.lastname(), customer.address(), customer.email(), new ArrayList<>()));
     }
     public Customer getCustomerById(String id){return repo.findById(id).orElseThrow();
     }

@@ -4,6 +4,7 @@ import React, {useState} from "react";
 import ChangeCustomer from "./ChangeCustomer.tsx";
 import {Order} from "../../types/Order.ts";
 import {useNavigate} from "react-router-dom";
+import './CustomerList.css';
 
 type CustomerListProps = {
     customers: Customer[],
@@ -43,8 +44,16 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
     return (
         <div>
             <div className="customer-list">
-                <h2>Customer List</h2>
+                <h2>Kundenliste</h2>
                 <table>
+                    <>
+                        <tr className="head-line">
+                            <td>Vorname</td>
+                            <td>Nachname</td>
+                            <td>Adresse</td>
+                            <td>Email</td>
+                        </tr>
+                    </>
                     {props.customers.map((customer) => (
                         <tr key={customer.id}>
                             <td>{customer.firstname}</td>
