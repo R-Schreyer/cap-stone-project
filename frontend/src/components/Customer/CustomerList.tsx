@@ -54,6 +54,7 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                         </tr>
                     </thead>
                     {props.customers.map((customer) => (
+                        <tbody>
                         <tr key={customer.id}>
                             <td>{customer.firstname}</td>
                             <td>{customer.lastname}</td>
@@ -69,6 +70,7 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                                 <button onClick={() => navigate("/ViewOrders/" + customer.id)}>View Orders</button>
                             </td>
                         </tr>
+                        </tbody>
                     ))}
                 </table>
                 {editMode && customer && <ChangeCustomer customer={customer} updateCustomer={updateCustomer}/>}
