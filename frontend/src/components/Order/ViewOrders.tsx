@@ -19,12 +19,12 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
             <h1>Bestellungen für {customer.firstname} {customer.lastname}</h1>
             <button onClick={() => navigate("/NewOrderPage/" + customer.id)}>Neue Bestellung</button>
             <table>
-                <>
+                <thead>
                     <tr className="head-line">
                         <td>Bestellnummer</td>
                         <td>Gesamtpreis</td>
                     </tr>
-                </>
+                </thead>
                 {customer.customerOrderList.map((order) => (
                     <tr key={order.id}>
                         <td>{order.id}</td>

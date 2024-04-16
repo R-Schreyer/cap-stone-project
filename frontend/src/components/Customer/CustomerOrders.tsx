@@ -9,12 +9,12 @@ export default function CustomerOrders(props: Readonly<CustomerOrdersProps>) {
         <div>
             <h2>Bestellungen</h2>
             <ul>
-                {props.orders.map((order, index) => (
-                    <li key={index}>
+                {props.orders.map((order) => (
+                    <li key={"customer-order"}>
                         <p>Bestellnummer: {order.id}</p>
                         <p>Datum: {order.orderDate.toLocaleDateString()}</p>
                         <ul>
-                            {order.productList.map((product, index) => (
+                            {order.productList.map((product) => (
                                 <li key={"productName"}>{product.productName}</li>
                             ))}
                         </ul>

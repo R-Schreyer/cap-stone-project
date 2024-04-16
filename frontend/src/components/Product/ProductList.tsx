@@ -28,14 +28,14 @@ export default function ProductList(props: Readonly<ProductListProps>) {
             <div className="product-list">
                 <h2>Product List</h2>
                 <table className="table">
-                    <>
+                    <thead>
                         <tr className="head-line">
                             <td>Produkt</td>
                             <td>Kategorie</td>
                             <td>Produkt Id</td>
                             <td>Preis</td>
                         </tr>
-                    </>
+                    </thead>
                     {props.products.map((product) => (
                         <tr key={product.id}>
                             <td>{product.productName}</td>

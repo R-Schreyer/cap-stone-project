@@ -45,14 +45,14 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
             <div className="customer-list">
                 <h2>Kundenliste</h2>
                 <table>
-                    <>
+                    <thead>
                         <tr className="head-line">
                             <td>Vorname</td>
                             <td>Nachname</td>
                             <td>Adresse</td>
                             <td>Email</td>
                         </tr>
-                    </>
+                    </thead>
                     {props.customers.map((customer) => (
                         <tr key={customer.id}>
                             <td>{customer.firstname}</td>
