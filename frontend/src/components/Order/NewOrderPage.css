@@ -1,5 +1,6 @@
 .new-order-table {
-    display: flex
+    display: flex;
+    justify-content: center;
 }
 
 .price-field {
@@ -8,4 +9,9 @@
 
 .order-price {
     font-weight: bold
+}
+
+.price-container {
+    display: flex;
+    justify-content: center;
 }

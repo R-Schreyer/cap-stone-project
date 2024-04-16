@@ -128,7 +128,7 @@ export default function NewOrderPage(props: Readonly<NewOrderPageProps>) {
                     </table>
                 </div>
             </div>
-            <div>
+            <div className="price-container">
                 <p>Gesamtpreis: </p>
                 <p className="order-price">{orderPrice} Euro</p>
                 <button onClick={addOrder}>Bestellung speichern</button>

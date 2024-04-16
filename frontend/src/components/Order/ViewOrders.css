@@ -1,0 +1,28 @@
+/*
+.order-display {
+
+    margin: 20px auto;!* Zentrieren der Tabelle horizontal *!
+    border-collapse: collapse; !* Zusammenführen von Zellengrenzen *!
+}
+
+.head-line td {
+    text-align: left; !* Text von links nach rechts ausrichten *!
+    direction: rtl; !* Zelleninhalt von rechts nach links anordnen *!
+}*/
+.button-container {
+    text-align: center; /* Zentrieren des Inhalts horizontal */
+}
+
+.order-display {
+    margin: 20px auto; /* Zentrieren der Tabelle horizontal */
+    border-collapse: collapse; /* Zusammenführen von Zellengrenzen */
+}
+
+.head-line td {
+    text-align: left; /* Text von links nach rechts ausrichten */
+    direction: rtl; /* Zelleninhalt von rechts nach links anordnen */
+}
+
+.order-display td {
+    padding-right: 8px; /* Hinzufügen von Abstand um den Text in den Zellen */
+}
