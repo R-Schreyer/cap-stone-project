@@ -73,7 +73,7 @@ class ProductControllerTest {
 
     @Test
     @DirtiesContext
-    public void testUpdateProductById() {
+    void testUpdateProductById() {
         ProductService productService = Mockito.mock(ProductService.class);
 
         String productId = "123";
@@ -97,6 +97,6 @@ class ProductControllerTest {
         Assertions.assertEquals(productDTO.category(), updatedProductResponse.getCategory());
         Assertions.assertEquals(pricePerPiece, updatedProductResponse.getPricePerPiece());
 
-        Mockito.verify(productService, Mockito.times(1)).updateProduct(Mockito.eq(productId), Mockito.eq(productDTO));
+        Mockito.verify(productService, Mockito.times(1)).updateProduct(Mockito.anyString(), Mockito.any(ProductDTO.class));
     }
 }

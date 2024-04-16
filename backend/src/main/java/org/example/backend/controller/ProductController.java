@@ -28,10 +28,6 @@ public class ProductController {
         Product newProduct = service.saveProduct(productDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
     }
-    /*@PutMapping("{id}")
-    public Product updateProductById(@PathVariable String id, @RequestBody ProductDTO product){
-        return service.updateProduct(id, product);
-    }*/
 
     @PutMapping("{id}")
     public ResponseEntity<Product> updateProductById(@PathVariable String id, @RequestBody ProductDTO product) {
