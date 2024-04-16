@@ -26,7 +26,7 @@ export default function ProductList(props: Readonly<ProductListProps>) {
     return (
         <div>
             <div className="product-list">
-                <h2>Product List</h2>
+                <h2>Produktliste</h2>
                 <table className="table">
                     <thead>
                         <tr className="head-line">
