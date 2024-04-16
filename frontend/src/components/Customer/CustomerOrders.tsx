@@ -4,7 +4,7 @@ type CustomerOrdersProps = {
     orders: Order[];
 }
 
-export default function CustomerOrders(props: CustomerOrdersProps) {
+export default function CustomerOrders(props: Readonly<CustomerOrdersProps>) {
     return (
         <div>
             <h2>Bestellungen</h2>
@@ -15,7 +15,7 @@ export default function CustomerOrders(props: CustomerOrdersProps) {
                         <p>Datum: {order.orderDate.toLocaleDateString()}</p>
                         <ul>
                             {order.productList.map((product, index) => (
-                                <li key={index}>{product.productName}</li>
+                                <li key={"productName"}>{product.productName}</li>
                             ))}
                         </ul>
                         <p>Gesamtpreis: {order.price}</p>

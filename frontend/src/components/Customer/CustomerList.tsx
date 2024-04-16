@@ -4,7 +4,6 @@ import React, {useState} from "react";
 import ChangeCustomer from "./ChangeCustomer.tsx";
 import {Order} from "../../types/Order.ts";
 import {useNavigate} from "react-router-dom";
-import './CustomerList.css';
 
 type CustomerListProps = {
     customers: Customer[],

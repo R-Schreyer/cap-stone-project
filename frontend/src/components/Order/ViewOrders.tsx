@@ -5,7 +5,7 @@ type ViewOrdersProps = {
     customers: Customer[];
 }
 
-export default function ViewOrders({customers}: ViewOrdersProps) {
+export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
     const {id} = useParams<{ id: string }>();
     const customer = customers.find(customer => customer.id === id);
     const navigate = useNavigate();
