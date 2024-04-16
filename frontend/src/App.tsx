@@ -52,6 +52,18 @@ export default function App() {
         })
             .then(() => fetchProducts())
     }
+
+    function updateProduct(id: string, productName: string, category: string, pricePerPiece: number) {
+        axios.put("/api/products/" + id, {
+            productName: productName,
+            category: category,
+            pricePerPiece: pricePerPiece
+        })
+            .then(() => fetchProducts())
+
+        console.log("Updated customer:", productName, category, pricePerPiece);
+    }
+
     function fetchProducts() {
         axios.get("/api/products").then(response => setProducts(response.data))
     }
@@ -74,7 +86,8 @@ export default function App() {
                                                                    setCustomers={setCustomers}
                                                                    sendCustomerOrderList={sendCustomerOrderList}/>}/>
                 <Route path="/createNewCustomer" element={<CreateNewCustomer postCustomer={postCustomer}/>}/>
-                <Route path="/productList" element={<ProductList products={products} setProducts={setProducts}/>}/>
+                <Route path="/productList" element={<ProductList updateProduct={updateProduct} products={products}
+                                                                 setProducts={setProducts}/>}/>
                 <Route path="/createNewProduct" element={<CreateNewProduct postProduct={postProduct}/>}/>
             </Routes>
         </Layout>

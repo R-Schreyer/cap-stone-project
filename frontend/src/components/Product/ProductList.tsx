@@ -1,12 +1,18 @@
 import axios from "axios";
-import React from "react";
+import React, {useState} from "react";
 import {Product} from "../../types/Product.ts";
+import ChangeProduct from "./ChangeProduct.tsx";
 
 type ProductListProps = {
     products: Product[],
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>
+    updateProduct: (id: string, productName: string, category: string, pricePerPiece: number) => void
 }
 export default function ProductList(props: Readonly<ProductListProps>) {
+
+    const [editMode, setEditMode] = useState(false)
+    const [product, setProduct] = useState<Product>()
+
     function deleteProduct(id: string){
         axios.delete("/api/products/" + id)
             .then(() => {
@@ -23,6 +29,12 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                 console.error("Error deleting product:", error);
             });
     }
+
+    function updateProduct(id: string, productName: string, category: string, pricePerPiece: number) {
+        props.updateProduct(id, productName, category, pricePerPiece)
+        setEditMode(false);
+    }
+
     return (
         <div>
             <div className="product-list">
@@ -45,11 +57,18 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                             <td>{product.id}</td>
                             <td>
                                 <button onClick={() => deleteProduct(product.id)}>delete</button>
+                                <button onClick={() => {
+                                    setProduct(product);
+                                    setEditMode(true);
+                                }}>Edit
+                                </button>
                             </td>
                         </tr>
                         </tbody>
                     ))}
                 </table>
+                {editMode && product && <ChangeProduct product={product} updateProduct={updateProduct}/>}
+
             </div>
         </div>
     )
