@@ -18,7 +18,7 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
 
     //const[order, setOrder]=useState<Order>()
 
-    /*function deleteOrder(id: string){
+    function deleteOrder(id: string) {
         axios.delete("/api/orders/" + id)
             .then(()=>{
                 axios.get("/api/orders")
@@ -32,24 +32,7 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
             .catch(error => {
                 console.error("Error deleting customer:", error);
             });
-    }*/
-
-    function deleteOrder(id: string) {
-        axios.delete("/api/orders/" + id)
-            .then(() => {
-                axios.get("/api/orders")
-                    .then(response => {
-                        setOrders(response.data); // Hier auf setOrders zugreifen, nicht auf props.setOrders
-                    })
-                    .catch(error => {
-                        console.error("Error loading orders:", error);
-                    });
-            })
-            .catch(error => {
-                console.error("Error deleting order:", error); // Fehlermeldung anpassen
-            });
     }
-
 
 
     if (!customer) {
