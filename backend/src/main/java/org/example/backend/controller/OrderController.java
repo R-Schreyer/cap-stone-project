@@ -13,10 +13,15 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     private final OrderService orderService;
 
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public Order saveOrder(@RequestBody OrderDTO orderDTO) {
         return orderService.saveOrder(orderDTO);
     }
 
+    @DeleteMapping("/{id}")
+    public void deleteOrderById(@PathVariable String id) {
+        orderService.deleteOrderById(id);
+    }
 }
