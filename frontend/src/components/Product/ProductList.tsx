@@ -37,7 +37,8 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                         </tr>
                     </thead>
                     {props.products.map((product) => (
-                        <tr key={product.id}>
+                        <tbody key={product.id}>
+                        <tr>
                             <td>{product.productName}</td>
                             <td>{product.category}</td>
                             <td>{product.pricePerPiece}</td>
@@ -46,6 +47,7 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                                 <button onClick={() => deleteProduct(product.id)}>delete</button>
                             </td>
                         </tr>
+                        </tbody>
                     ))}
                 </table>
             </div>

@@ -46,12 +46,12 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                 <h2>Kundenliste</h2>
                 <table>
                     <thead>
-                        <tr className="head-line">
-                            <td>Vorname</td>
-                            <td>Nachname</td>
-                            <td>Adresse</td>
-                            <td>Email</td>
-                        </tr>
+                    <tr className="head-line">
+                        <td>Vorname</td>
+                        <td>Nachname</td>
+                        <td>Adresse</td>
+                        <td>Email</td>
+                    </tr>
                     </thead>
                     {props.customers.map((customer) => (
                         <tbody>
