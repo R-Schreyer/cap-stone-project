@@ -9,6 +9,8 @@ import "./App.css";
 import CreateNewProduct from "./components/Product/CreateNewProduct.tsx";
 import ProductList from "./components/Product/ProductList.tsx";
 import {Product} from "./types/Product.ts";
+import ViewOrders from "./components/Order/ViewOrders.tsx";
+import NewOrderPage from "./components/Order/NewOrderPage.tsx";
 
 export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
@@ -57,14 +59,33 @@ export default function App() {
         fetchProducts();
     }, []);
     console.log("Kunden: ", customers);
+
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+    function sendCustomerOrderList(orderList: any) {
+        // Hier die Logik zur Verarbeitung der Bestellliste einfügen
+        console.log("Received customer order list:", orderList);
+    }
+    
     return (
+        <>
         <Layout>
             <Routes>
-                <Route path="/customerList" element={<CustomerList updateCustomer={updateCustomer} customers={customers} setCustomers={setCustomers}/>}/>
+                <Route path="/customerList" element={<CustomerList updateCustomer={updateCustomer} customers={customers}
+                                                                   setCustomers={setCustomers}
+                                                                   sendCustomerOrderList={sendCustomerOrderList}/>}/>
                 <Route path="/createNewCustomer" element={<CreateNewCustomer postCustomer={postCustomer}/>}/>
                 <Route path="/productList" element={<ProductList products={products} setProducts={setProducts}/>}/>
                 <Route path="/createNewProduct" element={<CreateNewProduct postProduct={postProduct}/>}/>
             </Routes>
         </Layout>
+            <Routes>
+                <Route path={"/ViewOrders/:id"} element={<ViewOrders customers={customers}/>}/>
+                <Route path={"NewOrderPage/:id"} element={<NewOrderPage products={products}
+                                                                        setProducts={setProducts}
+                                                                        customers={customers}
+                                                                        fetchCustomers={fetchCustomers}/>}/>
+            </Routes>
+        </>
     )
 }

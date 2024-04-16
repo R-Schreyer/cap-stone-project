@@ -1,0 +1,11 @@
+.new-order-table {
+    display: flex
+}
+
+.price-field {
+    display: flex
+}
+
+.order-price {
+    font-weight: bold
+}

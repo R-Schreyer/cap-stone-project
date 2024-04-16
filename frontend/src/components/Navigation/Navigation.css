@@ -1,5 +1,4 @@
 
-
 .nav ul{
     display: flex;
     justify-content: space-around;
@@ -7,6 +6,16 @@
     margin-bottom: 30px;
 }
 
-.nav ul li{
-    align-items: center;
+.nav ul li {
+    text-align: center;
+    flex-grow: 1;
+    border-radius: 25px;
+    font-size: 1em;
+    background: rgba(21, 118, 110);
+    color: #223243;
+    padding: 10px 10px;
+    margin: 10px;
+    font-weight: 500;
+    border: #00dfc4;
+    cursor: pointer;
 }

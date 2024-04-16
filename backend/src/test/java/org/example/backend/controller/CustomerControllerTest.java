@@ -11,6 +11,8 @@ import org.springframework.http.MediaType;
 import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.web.servlet.MockMvc;
 
+import java.util.ArrayList;
+
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
@@ -24,7 +26,7 @@ class CustomerControllerTest {
     @Test
     @DirtiesContext
     void getAllCustomers() throws Exception {
-        CustomerDTO customerToSave = new CustomerDTO("John", "Doe", "mühlweg1", "john-doe@gmx.de");
+        CustomerDTO customerToSave = new CustomerDTO("John", "Doe", "mühlweg1", "john-doe@gmx.de", new ArrayList<>());
         Customer customerSaved = customerService.saveCustomer(customerToSave);
         mockMvc.perform(get("/api/customers"))
                 .andExpect(status().isOk())
@@ -39,7 +41,7 @@ class CustomerControllerTest {
     @Test
     @DirtiesContext
     void getCustomerById() throws Exception {
-        CustomerDTO customerToSave = new CustomerDTO("John", "Doe", "mühlweg1", "john-doe@gmx.de");
+        CustomerDTO customerToSave = new CustomerDTO("John", "Doe", "mühlweg1", "john-doe@gmx.de", new ArrayList<>());
         Customer customerSaved = customerService.saveCustomer(customerToSave);
         mockMvc.perform(get("/api/customers/{id}", customerSaved.getId()))
                 .andExpect(status().isOk())
