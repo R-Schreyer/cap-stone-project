@@ -63,7 +63,6 @@ export default function App() {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
     function sendCustomerOrderList(orderList: any) {
-        // Hier die Logik zur Verarbeitung der Bestellliste einfügen
         console.log("Received customer order list:", orderList);
     }
     

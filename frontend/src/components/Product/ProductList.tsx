@@ -26,18 +26,19 @@ export default function ProductList(props: Readonly<ProductListProps>) {
     return (
         <div>
             <div className="product-list">
-                <h2>Product List</h2>
+                <h2>Produktliste</h2>
                 <table className="table">
                     <thead>
                         <tr className="head-line">
                             <td>Produkt</td>
                             <td>Kategorie</td>
-                            <td>Produkt Id</td>
                             <td>Preis</td>
+                            <td>Produkt Id</td>
                         </tr>
                     </thead>
                     {props.products.map((product) => (
-                        <tr key={product.id}>
+                        <tbody key={product.id}>
+                        <tr>
                             <td>{product.productName}</td>
                             <td>{product.category}</td>
                             <td>{product.pricePerPiece}</td>
@@ -46,6 +47,7 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                                 <button onClick={() => deleteProduct(product.id)}>delete</button>
                             </td>
                         </tr>
+                        </tbody>
                     ))}
                 </table>
             </div>

@@ -46,15 +46,16 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                 <h2>Kundenliste</h2>
                 <table>
                     <thead>
-                        <tr className="head-line">
-                            <td>Vorname</td>
-                            <td>Nachname</td>
-                            <td>Adresse</td>
-                            <td>Email</td>
-                        </tr>
+                    <tr className="head-line">
+                        <td>Vorname</td>
+                        <td>Nachname</td>
+                        <td>Adresse</td>
+                        <td>Email</td>
+                    </tr>
                     </thead>
                     {props.customers.map((customer) => (
-                        <tr key={customer.id}>
+                        <tbody key={customer.id}>
+                        <tr>
                             <td>{customer.firstname}</td>
                             <td>{customer.lastname}</td>
                             <td>{customer.address}</td>
@@ -69,6 +70,7 @@ export default function CustomerList(props: Readonly<CustomerListProps>) {
                                 <button onClick={() => navigate("/ViewOrders/" + customer.id)}>View Orders</button>
                             </td>
                         </tr>
+                        </tbody>
                     ))}
                 </table>
                 {editMode && customer && <ChangeCustomer customer={customer} updateCustomer={updateCustomer}/>}
