@@ -14,10 +14,8 @@ export default function ChangeProduct(props: Readonly<ProductChangeProps>) {
     const [quantity, setQuantity] = useState(props.product.quantity);
     const handlePriceChange = (event: ChangeEvent<HTMLInputElement>) => {
         const newValue = parseFloat(event.target.value);
-        // Überprüfe, ob newValue eine gültige Zahl ist
 
         if (!isNaN(newValue)) {
-            // Wenn die Eingabe eine gültige Zahl ist, setzen Sie den Zustand auf diese Zahl
             setPricePerPiece(newValue);
         }
     };
