@@ -11,11 +11,13 @@ import ProductList from "./components/Product/ProductList.tsx";
 import {Product} from "./types/Product.ts";
 import ViewOrders from "./components/Order/ViewOrders.tsx";
 import NewOrderPage from "./components/Order/NewOrderPage.tsx";
-import CustomerOrders from "./components/Customer/CustomerOrders.tsx";
+import ChangeOrder from "./components/Order/ChangeOrder.tsx";
+import {Order} from "./types/Order.ts";
 
 export default function App() {
     const [customers, setCustomers] = useState<Customer[]>([])
     const [products, setProducts] = useState<Product[]>([])
+    const [order, setOrder] = useState<Order>()
 
     function updateCustomer(id: string, firstname: string, lastname: string, address: string, email: string) {
         axios.put("/api/customers/" + id,{
@@ -66,7 +68,8 @@ export default function App() {
     function sendCustomerOrderList(orderList: any) {
         console.log("Received customer order list:", orderList);
     }
-    
+
+    console.log(order)
     return (
         <>
         <Layout>
@@ -80,12 +83,15 @@ export default function App() {
             </Routes>
         </Layout>
             <Routes>
-                <Route path={"/ViewOrders/:id"} element={<ViewOrders customers={customers}
-                orders={CustomerOrders}/>}/>
+                <Route path={"/ViewOrders/:id"}
+                       element={<ViewOrders customers={customers} handleOrder={(order: Order) => setOrder(order)}
+                                            fetchCustomers={fetchCustomers}/>}/>
                 <Route path={"NewOrderPage/:id"} element={<NewOrderPage products={products}
                                                                         setProducts={setProducts}
                                                                         customers={customers}
                                                                         fetchCustomers={fetchCustomers}/>}/>
+                <Route path={"ChangeOrder/:id"}
+                       element={<ChangeOrder order={order} fetchCustomers={fetchCustomers} products={products}/>}/>
             </Routes>
         </>
     )

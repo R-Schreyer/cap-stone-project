@@ -24,4 +24,9 @@ public class OrderController {
     public void deleteOrderById(@PathVariable String id) {
         orderService.deleteOrderById(id);
     }
+
+    @PutMapping("/{id}")
+    public void updateOrderById(@PathVariable String id, @RequestBody OrderDTO orderDTO) {
+        orderService.upadetOrderById(id, orderDTO);
+    }
 }

@@ -35,4 +35,17 @@ public class OrderService {
         oderRepo.deleteById(id);
     }
 
+    public void upadetOrderById(String id, OrderDTO orderDTO) {
+        Order order = oderRepo.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Order not found with id: " + id));
+        Customer customer = customerRepo.findById(order.getCustomerId())
+                .orElseThrow(() -> new NoSuchElementException("Customer not found for order with id: " + id));
+        customer.getCustomerOrderList().remove(order);
+        order.setProductList(orderDTO.productList());
+        order.setPrice(orderDTO.price());
+        customer.getCustomerOrderList().add(order);
+        customerRepo.save(customer);
+        oderRepo.save(order);
+    }
+
 }

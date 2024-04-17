@@ -4,14 +4,14 @@ import axios from "axios";
 import {Order} from "../../types/Order.ts";
 import React from "react";
 
+
 type ViewOrdersProps = {
     customers: Customer[];
-
-    orders: Order[];
-    setOrders: React.Dispatch<React.SetStateAction<Order[]>>
+    fetchCustomers: () => void
+    handleOrder: (order: Order) => void
 }
 
-export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
+export default function ViewOrders({customers, fetchCustomers, handleOrder}: Readonly<ViewOrdersProps>) {
     const {id} = useParams<{ id: string }>();
     const customer = customers.find(customer => customer.id === id);
     const navigate = useNavigate();
@@ -21,13 +21,7 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
     function deleteOrder(id: string) {
         axios.delete("/api/orders/" + id)
             .then(()=>{
-                axios.get("/api/orders")
-                    .then(response=>{
-                        props.setOrders(response.data);
-                    })
-                    .catch(error => {
-                        console.error("Error loading orders:", error);
-                    });
+                fetchCustomers();
             })
             .catch(error => {
                 console.error("Error deleting customer:", error);
@@ -37,6 +31,13 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
 
     if (!customer) {
         return <div>Kunde nicht gefunden</div>;
+    }
+
+    function updateOrder(id: string, order: Order) {
+        handleOrder(order)
+        navigate("/ChangeOrder/" + id)
+
+
     }
 
     return (
@@ -57,6 +58,7 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
                         <td>{order.price}</td>
                         <td>
                             <button onClick={() => deleteOrder(order.id)}>delete</button>
+                            <button onClick={() => updateOrder(order.id, order)}>edit</button>
                         </td>
                     </tr>
                     </tbody>
