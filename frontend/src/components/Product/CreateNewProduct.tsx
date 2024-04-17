@@ -1,13 +1,15 @@
 import {ChangeEvent, FormEvent, useState} from "react";
 
 type CreateNewProductProps = {
-    postProduct: (productName: string, category: string, pricePerPiece: number | null) => void
+    postProduct: (productName: string, category: string, pricePerPiece: number | null, producer: string, quantity: string) => void
 }
 
 export default function CreateNewProduct(props: Readonly<CreateNewProductProps>) {
     const [productName, setProductName] = useState<string>("")
     const [category, setCategory] = useState<string>("")
     const [pricePerPiece, setPricePerPiece] = useState<number | null>(null)
+    const [producer, setProducer] = useState<string>("")
+    const [quantity, setQuantity] = useState<string>("")
 
     function handleChangeProductName(event: ChangeEvent<HTMLInputElement>) {
         console.log(event);
@@ -25,9 +27,19 @@ export default function CreateNewProduct(props: Readonly<CreateNewProductProps>)
         setPricePerPiece(isNaN(newValue) ? null : newValue)
     }
 
+    function handleChangeProducer(event: ChangeEvent<HTMLInputElement>) {
+        console.log(event);
+        setProducer(event.target.value)
+    }
+
+    function handleChangeQuantity(event: ChangeEvent<HTMLInputElement>) {
+        console.log(event);
+        setQuantity(event.target.value)
+    }
+
     function handleSubmit(event: FormEvent<HTMLFormElement>) {
         event.preventDefault()
-        props.postProduct(productName, category, pricePerPiece)
+        props.postProduct(productName, category, pricePerPiece, producer, quantity)
     }
 
     return (
@@ -51,6 +63,18 @@ export default function CreateNewProduct(props: Readonly<CreateNewProductProps>)
                        step="0.01"
                        value={pricePerPiece !== null ? pricePerPiece.toString() : ''}
                        onChange={handleChangePricePerPiece}/>
+
+                <label htmlFor={"producer"}>Hersteller:</label>
+                <input name={"producer"}
+                       type="text"
+                       value={producer}
+                       onChange={handleChangeProducer}/>
+
+                <label htmlFor={"quantity"}>Menge:</label>
+                <input name={"quantity"}
+                       type="text"
+                       value={quantity}
+                       onChange={handleChangeQuantity}/>
 
                 <button>Submit</button>
             </form>

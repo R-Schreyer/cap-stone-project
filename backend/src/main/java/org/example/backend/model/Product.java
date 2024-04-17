@@ -14,4 +14,6 @@ public class Product {
     private String productName;
     private String category;
     private BigDecimal pricePerPiece;
+    private String producer;
+    private String quantity;
 }

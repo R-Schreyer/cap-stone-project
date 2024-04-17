@@ -15,7 +15,7 @@ public class ProductService {
         return repo.findAll();
     }
     public Product saveProduct(ProductDTO product) {
-        return repo.save(new Product(null, product.productName(), product.category(), product.pricePerPiece()));
+        return repo.save(new Product(null, product.productName(), product.category(), product.pricePerPiece(), product.producer(), product.quantity()));
     }
     public Product getProductById(String id){return repo.findById(id).orElseThrow();
     }
@@ -27,6 +27,8 @@ public class ProductService {
         product.setProductName(productDTO.productName());
         product.setCategory(productDTO.category());
         product.setPricePerPiece(productDTO.pricePerPiece());
+        product.setProducer(productDTO.producer());
+        product.setProducer(productDTO.quantity());
         return repo.save(product);
     }
 }

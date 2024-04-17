@@ -44,24 +44,29 @@ export default function App() {
         fetchCustomers();
     }, []);
     console.log("Kunden: ", customers);
-    function postProduct(productName: string, category: string, pricePerPiece: number|null) {
+
+    function postProduct(productName: string, category: string, pricePerPiece: number | null, producer: string, quantity: string) {
         axios.post("/api/products",{
             productName: productName,
             category:  category,
-            pricePerPiece: pricePerPiece
+            pricePerPiece: pricePerPiece,
+            producer: producer,
+            quantity: quantity
         })
             .then(() => fetchProducts())
     }
 
-    function updateProduct(id: string, productName: string, category: string, pricePerPiece: number) {
+    function updateProduct(id: string, productName: string, category: string, pricePerPiece: number, producer: string, quantity: string) {
         axios.put("/api/products/" + id, {
             productName: productName,
             category: category,
-            pricePerPiece: pricePerPiece
+            pricePerPiece: pricePerPiece,
+            producer: producer,
+            quantity: quantity
         })
             .then(() => fetchProducts())
 
-        console.log("Updated customer:", productName, category, pricePerPiece);
+        console.log("Updated customer:", productName, category, pricePerPiece, producer, quantity);
     }
 
     function fetchProducts() {

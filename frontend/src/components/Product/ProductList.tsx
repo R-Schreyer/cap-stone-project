@@ -6,7 +6,7 @@ import ChangeProduct from "./ChangeProduct.tsx";
 type ProductListProps = {
     products: Product[],
     setProducts: React.Dispatch<React.SetStateAction<Product[]>>
-    updateProduct: (id: string, productName: string, category: string, pricePerPiece: number) => void
+    updateProduct: (id: string, productName: string, category: string, pricePerPiece: number, producer: string, quantity: string) => void
 }
 export default function ProductList(props: Readonly<ProductListProps>) {
 
@@ -30,8 +30,8 @@ export default function ProductList(props: Readonly<ProductListProps>) {
             });
     }
 
-    function updateProduct(id: string, productName: string, category: string, pricePerPiece: number) {
-        props.updateProduct(id, productName, category, pricePerPiece)
+    function updateProduct(id: string, productName: string, category: string, pricePerPiece: number, producer: string, quantity: string) {
+        props.updateProduct(id, productName, category, pricePerPiece, producer, quantity)
         setEditMode(false);
     }
 
@@ -41,12 +41,14 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                 <h2>Produktliste</h2>
                 <table className="table">
                     <thead>
-                        <tr className="head-line">
-                            <td>Produkt</td>
-                            <td>Kategorie</td>
-                            <td>Preis</td>
-                            <td>Produkt Id</td>
-                        </tr>
+                    <tr className="head-line">
+                        <td>Produkt</td>
+                        <td>Kategorie</td>
+                        <td>Preis</td>
+                        <td>Hersteller</td>
+                        <td>Menge</td>
+                        <td>Produkt Id</td>
+                    </tr>
                     </thead>
                     {props.products.map((product) => (
                         <tbody key={product.id}>
@@ -54,6 +56,8 @@ export default function ProductList(props: Readonly<ProductListProps>) {
                             <td>{product.productName}</td>
                             <td>{product.category}</td>
                             <td>{product.pricePerPiece}</td>
+                            <td>{product.producer}</td>
+                            <td>{product.quantity}</td>
                             <td>{product.id}</td>
                             <td>
                                 <button onClick={() => deleteProduct(product.id)}>delete</button>

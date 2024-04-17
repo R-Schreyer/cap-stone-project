@@ -90,6 +90,8 @@ export default function NewOrderPage(props: Readonly<NewOrderPageProps>) {
                                 <td>{product.productName}</td>
                                 <td>{product.category}</td>
                                 <td>{product.pricePerPiece}</td>
+                                <td>{product.producer}</td>
+                                <td>{product.quantity}</td>
                                 <td>{product.id}</td>
                                 <td>
                                     <button onClick={() => addProductToOrder(product)}>+</button>
@@ -107,6 +109,8 @@ export default function NewOrderPage(props: Readonly<NewOrderPageProps>) {
                             <th>Produkt</th>
                             <th>Kategorie</th>
                             <th>Preis</th>
+                            <th>Hersteller</th>
+                            <th>Menge</th>
                             <th>Produkt Id</th>
                             <th>Anzahl</th>
                         </tr>
