@@ -40,7 +40,7 @@ class OrderControllerTest {
     void saveOrder() throws Exception {
         //GIVEN
         customerRepository.save(new Customer("abc", "Max", "Mustermann", "Mühlweg1", "max@mustermann.de", new ArrayList<>()));
-        OrderDTO orderDTO = new OrderDTO(List.of(new Product("123", "Kaffee", "Getränke", BigDecimal.valueOf(3.99))), BigDecimal.valueOf(3.99), new Date(), "abc");
+        OrderDTO orderDTO = new OrderDTO(List.of(new Product("123", "Kaffee", "Getränke", BigDecimal.valueOf(3.99), "Tuba", "400g")), BigDecimal.valueOf(3.99), new Date(), "abc");
         String orderDTOJson = objectMapper.writeValueAsString(orderDTO);
         mockMvc.perform(post("/api/orders").contentType(MediaType.APPLICATION_JSON).content(orderDTOJson))
                 .andExpect(status().isCreated());

@@ -32,7 +32,7 @@ class ProductControllerTest {
     @DirtiesContext
     void getAllProducts() throws Exception {
         BigDecimal price = BigDecimal.valueOf(0.29);
-        ProductDTO productToSave = new ProductDTO ("Water", "Drinks", price);
+        ProductDTO productToSave = new ProductDTO("Water", "Drinks", price, "Agua", "1l");
         Product productSaved = productService.saveProduct(productToSave);
         mockMvc.perform(get("/api/products"))
                 .andExpect(status().isOk())
@@ -40,14 +40,16 @@ class ProductControllerTest {
                         [{
                         "productName":  "Water",
                         "category":  "Drinks",
-                        "pricePerPiece":  0.29}]"""))
+                        "pricePerPiece":  0.29,
+                        "producer":  "Agua",
+                        "quantity":  "1l"}]"""))
                 .andExpect(jsonPath("$[0].id").value(productSaved.getId()));
     }
     @Test
     @DirtiesContext
     void getProductById() throws Exception {
         BigDecimal price = BigDecimal.valueOf(0.29);
-        ProductDTO productToSave = new ProductDTO ("Water", "Drinks", price);
+        ProductDTO productToSave = new ProductDTO("Water", "Drinks", price, "Agua", "1l");
         Product productSaved = productService.saveProduct(productToSave);
         mockMvc.perform(get("/api/products/{id}", productSaved.getId()))
                 .andExpect(status().isOk())
@@ -55,12 +57,14 @@ class ProductControllerTest {
                 .andExpect(jsonPath("$.id").value(productSaved.getId()))
                 .andExpect(jsonPath("$.productName").value("Water"))
                 .andExpect(jsonPath("$.category").value("Drinks"))
-                .andExpect(jsonPath("$.pricePerPiece").value(price));
+                .andExpect(jsonPath("$.pricePerPiece").value(price))
+                .andExpect(jsonPath("$.producer").value("Agua"))
+                .andExpect(jsonPath("$.quantity").value("1l"));
     }
     @Test
     @DirtiesContext
     void saveNewProduct() throws Exception {
-        String productJson = "{\"productName\": \"Water\", \"category\": \"Drinks\"}";
+        String productJson = "{\"productName\": \"Water\", \"category\": \"Drinks\", \"producer\": \"Agua\", \"quantity\": \"1l\"}";
         mockMvc.perform(post("/api/products")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(productJson))
@@ -68,7 +72,9 @@ class ProductControllerTest {
                 .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.id").exists())
                 .andExpect(jsonPath("$.productName").value("Water"))
-                .andExpect(jsonPath("$.category").value("Drinks"));
+                .andExpect(jsonPath("$.category").value("Drinks"))
+                .andExpect(jsonPath("$.producer").value("Agua"))
+                .andExpect(jsonPath("$.quantity").value("1l"));
     }
 
     @Test
@@ -78,9 +84,9 @@ class ProductControllerTest {
 
         String productId = "123";
         BigDecimal pricePerPiece = new BigDecimal("10.0");
-        ProductDTO productDTO = new ProductDTO("Updated Product Name", "Updated Category", pricePerPiece);
+        ProductDTO productDTO = new ProductDTO("Updated Product Name", "Updated Category", pricePerPiece, "Updated Producer", "Updated Quantity");
 
-        Product updatedProduct = new Product(productId, productDTO.productName(), productDTO.category(), productDTO.pricePerPiece());
+        Product updatedProduct = new Product(productId, productDTO.productName(), productDTO.category(), productDTO.pricePerPiece(), productDTO.producer(), productDTO.quantity());
         Mockito.when(productService.updateProduct(Mockito.eq(productId), Mockito.any(ProductDTO.class))).thenReturn(updatedProduct);
 
         ProductController productController = new ProductController(productService);
@@ -96,6 +102,8 @@ class ProductControllerTest {
         Assertions.assertEquals(productDTO.productName(), updatedProductResponse.getProductName());
         Assertions.assertEquals(productDTO.category(), updatedProductResponse.getCategory());
         Assertions.assertEquals(pricePerPiece, updatedProductResponse.getPricePerPiece());
+        Assertions.assertEquals(productDTO.producer(), updatedProductResponse.getProducer());
+        Assertions.assertEquals(productDTO.quantity(), updatedProductResponse.getQuantity());
 
         Mockito.verify(productService, Mockito.times(1)).updateProduct(Mockito.anyString(), Mockito.any(ProductDTO.class));
     }

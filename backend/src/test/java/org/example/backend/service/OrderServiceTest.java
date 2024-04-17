@@ -28,8 +28,8 @@ class OrderServiceTest {
         BigDecimal priceBanana = BigDecimal.valueOf(1.99);
         BigDecimal priceMango = BigDecimal.valueOf(2.99);
         BigDecimal price = BigDecimal.valueOf(4.98);
-        Product product1 = new Product("abc", "Bananen", "Obst", priceBanana);
-        Product product2 = new Product("bcd", "Mango", "Obst", priceMango);
+        Product product1 = new Product("abc", "Bananen", "Obst", priceBanana, "Obstwiese", "1kg");
+        Product product2 = new Product("bcd", "Mango", "Obst", priceMango, "Obstwiese", "1St");
         productList.add(product1);
         productList.add(product2);
         Calendar calendar = Calendar.getInstance();

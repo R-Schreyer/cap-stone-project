@@ -19,8 +19,8 @@ class ProductServiceTest {
         //GIVEN
         BigDecimal price1 = BigDecimal.valueOf(0.29);
         BigDecimal price2 = BigDecimal.valueOf(0.39);
-        Product p1 = new Product(null, "Water", "Drinks", price1);
-        Product p2 = new Product(null, "Milk", "Drinks", price2);
+        Product p1 = new Product(null, "Water", "Drinks", price1, "Agua", "1l");
+        Product p2 = new Product(null, "Milk", "Drinks", price2, "Landluft", "1l");
         List<Product> products = List.of(p1, p2);
         when(productRepository.findAll()).thenReturn(products);
         //WHEN
@@ -33,7 +33,7 @@ class ProductServiceTest {
     void getProductById() {
         //GIVEN
         BigDecimal price3 =BigDecimal.valueOf(0.69);
-        Product p3 = new Product("001", "Bread", "Food", price3);
+        Product p3 = new Product("001", "Bread", "Food", price3, "Backmeister", "1kg");
         when(productRepository.findById("001")).thenReturn(Optional.of(p3));
         //WHEN
         Product actual = productService.getProductById("001");
@@ -45,8 +45,8 @@ class ProductServiceTest {
     void saveProduct() {
         //GIVEN
         BigDecimal price = BigDecimal.valueOf(0.29);
-        ProductDTO p1 = new ProductDTO("Water", "Drinks", price);
-        Product p2 = new Product(null, "Water", "Drinks", price);
+        ProductDTO p1 = new ProductDTO("Water", "Drinks", price, "Agua", "1l");
+        Product p2 = new Product(null, "Water", "Drinks", price, "Agua", "1l");
         when(productRepository.save(p2)).thenReturn(p2);
         //WHEN
         Product actual = productService.saveProduct(p1);
