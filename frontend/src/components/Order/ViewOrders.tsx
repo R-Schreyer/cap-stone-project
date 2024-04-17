@@ -1,5 +1,6 @@
 import {useNavigate, useParams} from 'react-router-dom';
 import {Customer} from "../../types/Customer.ts";
+import './ViewOrders.css';
 
 type ViewOrdersProps = {
     customers: Customer[];
@@ -17,13 +18,15 @@ export default function ViewOrders({customers}: Readonly<ViewOrdersProps>) {
     return (
         <div>
             <h1>Bestellungen für {customer.firstname} {customer.lastname}</h1>
-            <button onClick={() => navigate("/NewOrderPage/" + customer.id)}>Neue Bestellung</button>
-            <table>
+            <div className="button-container">
+                <button onClick={() => navigate("/NewOrderPage/" + customer.id)}>Neue Bestellung</button>
+            </div>
+            <table className="order-display">
                 <thead>
-                    <tr className="head-line">
-                        <td>Bestellnummer</td>
-                        <td>Gesamtpreis</td>
-                    </tr>
+                <tr className="head-line">
+                    <td>Bestellnummer</td>
+                    <td>Gesamtpreis</td>
+                </tr>
                 </thead>
                 {customer.customerOrderList.map((order) => (
                     <tr key={order.id}>

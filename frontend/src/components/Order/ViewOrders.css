@@ -1,0 +1,18 @@
+
+.button-container {
+    text-align: center;
+}
+
+.order-display {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+.head-line td {
+    text-align: left;
+    direction: rtl;
+}
+
+.order-display td {
+    padding-right: 8px;
+}

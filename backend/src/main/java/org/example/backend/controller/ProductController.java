@@ -28,10 +28,17 @@ public class ProductController {
         Product newProduct = service.saveProduct(productDTO);
         return ResponseEntity.status(HttpStatus.CREATED).body(newProduct);
     }
+
     @PutMapping("{id}")
-    public Product updateProductById(@PathVariable String id, @RequestBody ProductDTO product){
-        return service.updateProduct(id, product);
+    public ResponseEntity<Product> updateProductById(@PathVariable String id, @RequestBody ProductDTO product) {
+        Product updatedProduct = service.updateProduct(id, product);
+        if (updatedProduct != null) {
+            return ResponseEntity.ok(updatedProduct);
+        } else {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(null);
+        }
     }
+
     @DeleteMapping("{id}")
     public void deleteProductById(@PathVariable String id){service.deleteProductById(id);}
 }
