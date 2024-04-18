@@ -66,7 +66,7 @@ export default function ChangeOrder(props: Readonly<OrderChangeProps>) {
 
     return (
         <>
-            <div className="new-order-table">
+            <div className="change-order-table">
                 <div className="product-list">
                     <h2>Produktliste</h2>
                     <table>

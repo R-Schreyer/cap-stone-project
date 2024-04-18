@@ -35,7 +35,7 @@ public class OrderService {
         oderRepo.deleteById(id);
     }
 
-    public void upadetOrderById(String id, OrderDTO orderDTO) {
+    public void updateOrderById(String id, OrderDTO orderDTO) {
         Order order = oderRepo.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Order not found with id: " + id));
         Customer customer = customerRepo.findById(order.getCustomerId())

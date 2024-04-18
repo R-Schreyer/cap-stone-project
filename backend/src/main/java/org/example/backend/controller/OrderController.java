@@ -27,6 +27,6 @@ public class OrderController {
 
     @PutMapping("/{id}")
     public void updateOrderById(@PathVariable String id, @RequestBody OrderDTO orderDTO) {
-        orderService.upadetOrderById(id, orderDTO);
+        orderService.updateOrderById(id, orderDTO);
     }
 }
